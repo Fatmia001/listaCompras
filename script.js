@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemList = document.getElementById('itemList'); // Lista UL onde os itens serão renderizados
     const clearAllBtn = document.getElementById('clearAll'); // Botão para limpar tudo
     const itemCount = document.getElementById('itemCount'); // Elemento que mostra a contagem de itens
-    
+    document.getElementById('par').style.textIndent = '455px'; // Adiciona indentação ao parágrafo para melhor visualização
+
     // Array que armazenará todos os itens da lista
     let items = [];
     
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para salvar os itens no localStorage
     function saveItems() {
         // Converte o array 'items' para JSON string e armazena no localStorage
-        localStorage.setItem('shoppingItems', JSON.stringify(items));
+        localStorage.setItem('afazeres', JSON.stringify(items));
         
         // Atualiza o contador de itens após salvar
         updateItemCount();
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const completedItems = items.filter(item => item.completed).length;
         
         // Atualiza o texto do contador
-        itemCount.textContent = `${completedItems}/${totalItems} itens`;
+        itemCount.textContent = `${completedItems}/${totalItems} completa${completedItems !== 1 ? 's' : ''}`;
         
         // Muda a cor do badge baseado no progresso:
         // Verde se todos estiverem completos, cinza caso contrário
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             itemCount.className = 'badge bg-secondary';
         }
+        document.getElementById('par').textContent = `Você tem ${totalItems} tarefa${totalItems !== 1 ? 's' : ''} na sua lista.`;
     }
     
     // Função para adicionar um novo item à lista
